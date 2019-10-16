@@ -11,8 +11,6 @@ namespace JSON_Validation.tests
         {
             string jsonString = string.Empty;
             Assert.True(Program.ValidateJsonString(jsonString));
-            bun SA CRA CE MAI FACI
-                Hi acasa
         }
     }
 }
