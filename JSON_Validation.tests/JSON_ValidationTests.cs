@@ -12,5 +12,12 @@ namespace JSON_Validation.tests
             string jsonString = string.Empty;
             Assert.True(Program.ValidateJsonString(jsonString));
         }
+
+        [Fact]
+        public void ValidateJsonStringWithInvalidStringReturnFalse()
+        {
+            string jsonString = "TEST\"";
+            Assert.False(Program.ValidateJsonString(jsonString));
+        }
     }
 }

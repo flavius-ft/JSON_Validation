@@ -22,6 +22,11 @@ namespace JSON_Validation
 
         public static bool ValidateJsonString(string jsonString)
         {
+            if (jsonString[0] != '\"' || jsonString[jsonString.Length - 1] != '\"')
+            {
+                return false;
+            }
+
             return true;
         }
     }
