@@ -1,0 +1,98 @@
+using System;
+
+namespace JSON_Validation
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            string jsonString = Console.ReadLine();
+
+            if (ValidateJsonString(jsonString))
+            {
+                Console.WriteLine("Valid");
+            }
+            else
+            {
+                Console.WriteLine("Invalid");
+            }
+
+            Console.Read();
+        }
+
+        public static bool ValidateJsonString(string jsonString)
+        {
+            string chars = "\"/bfnrt";
+            if (jsonString == string.Empty)
+            {
+                return true;
+            }
+
+            if (jsonString[0] != '\"' || jsonString[jsonString.Length - 1] != '\"')
+            {
+                return false;
+            }
+
+            for (int i = 0; i < jsonString.Length - 1; i++)
+            {
+                for (int j = 0; j < chars.Length; j++)
+                {
+                    if (jsonString[i] == '\\')
+                    {
+
+                    }
+                }
+            }
+
+            return true;
+        }
+    }
+}
+
+
+
+Teste
+using System;
+using Xunit;
+using JSON_Validation;
+
+namespace JSON_Validation.tests
+{
+    public class JSON_ValidationTests
+    {
+        [Fact]
+        public void ValidateJsonStringWithEmptyStringReturnTrue()
+        {
+            string jsonString = string.Empty;
+            Assert.True(Program.ValidateJsonString(jsonString));
+        }
+
+        [Fact]
+        public void ValidateJsonStringWithValidJsonStringReturnTrue()
+        {
+            string jsonString = "\"TEST\"";
+            Assert.True(Program.ValidateJsonString(jsonString));
+        }
+
+        [Fact]
+        public void ValidateJsonStringWithInvalidJsonStringReturnFalse()
+        {
+            string jsonString = "\"TEST";
+            Assert.False(Program.ValidateJsonString(jsonString));
+        }
+
+        [Fact]
+        public void ValidateJsonStringWithValidStringWhoContainsHexadecimalDigitsReturnTrue()
+        {
+            string jsonString = "\"Test\\u0097\nAnother line\"";
+            Assert.True(Program.ValidateJsonString(jsonString));
+        }
+
+        [Fact]
+        public void ValidateJsonStringWithBackSlashIncludedReturnFalse()
+        {
+            string jsonString = "\"\TEST\"";
+            Assert.False(Program.ValidateJsonString(jsonString));
+        }
+    }
+}
