@@ -27,6 +27,7 @@ namespace JSON_Validation
                 return true;
             }
 
+            int count = 0;
             string controlChars = "\"/bfnrtu";
             for (int i = 1; i < jsonString.Length - 1; i++)
             {
@@ -39,10 +40,15 @@ namespace JSON_Validation
                 {
                     for (int j = 1; j < controlChars.Length; j++)
                     {
-                        if (jsonString[i] != controlChars[j])
+                        if (jsonString[i] == controlChars[j])
                         {
-                            return false;
+                            count++;
                         }
+                    }
+
+                    if (count == 0)
+                    {
+                        return false;
                     }
                 }
             }
