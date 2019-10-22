@@ -27,14 +27,14 @@ namespace JSON_Validation
                 return true;
             }
 
-            for (int i = 0; i < jsonString.Length; i++)
+            for (int i = 1; i < jsonString.Length - 1; i++)
             {
-                if (jsonString[i] < 32)
+                if (jsonString[i] < 32 || jsonString[i] == '"')
                 {
                     return false;
                 }
             }
-
+            
             return jsonString[0] == '\"' && jsonString[jsonString.Length - 1] == '\"';
         }
     }

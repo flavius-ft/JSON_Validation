@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Xunit;
 using JSON_Validation;
 
@@ -30,7 +30,14 @@ namespace JSON_Validation.tests
         [Fact]
         public void ValidateJsonStringWithCharsSmallerThan32ReturnFalse()
         {
-            string jsonString = "\"TE\u0014ST\"";
+            string jsonString = "\"TE☺ST\"";
+            Assert.False(Program.ValidateJsonString(jsonString));
+        }
+
+        [Fact]
+        public void ValidateJsonStringWithQuotationMarkInsideTheStringReturnFalse()
+        {
+            string jsonString = "\"TE\"ST\"";
             Assert.False(Program.ValidateJsonString(jsonString));
         }
     }
