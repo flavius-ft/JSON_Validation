@@ -39,20 +39,27 @@ namespace JSON_Validation
                 {
                     if (jsonString[i + 1] == 'u')
                     {
-                        for (int k = i + 2; k <= i + 5; k++)
+                        if (i + 5 < jsonString.Length - 1)
                         {
-                            if (jsonString[k] >= '0' && jsonString[k] <= '9')
+                            for (int k = i + 2; k <= i + 5; k++)
                             {
-                                continue;
+                                if (jsonString[k] >= '0' && jsonString[k] <= '9')
+                                {
+                                    continue;
+                                }
+                                else if (jsonString[k] >= 'A' && jsonString[k] <= 'F')
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
                             }
-                            else if (jsonString[k] >= 'A' && jsonString[k] <= 'F')
-                            {
-                                continue;
-                            }
-                            else
-                            {
-                                return false;
-                            }
+                        }
+                        else
+                        {
+                            return false;
                         }
                     }
 
