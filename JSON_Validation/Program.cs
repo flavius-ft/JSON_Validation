@@ -51,6 +51,10 @@ namespace JSON_Validation
                                 {
                                     continue;
                                 }
+                                else if (jsonString[k] >= 'a'&& jsonString[k] <= 'f')
+                                {
+                                    continue;
+                                }
                                 else
                                 {
                                     return false;

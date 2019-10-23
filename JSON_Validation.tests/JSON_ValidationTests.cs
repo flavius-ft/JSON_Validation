@@ -75,5 +75,12 @@ namespace JSON_Validation.tests
             string jsonString = "\u009F";
             Assert.False(Program.ValidateJsonString(jsonString));
         }
+
+        [Fact]
+        public void ValidateJsonStringUsingHexaDigitsWithNumbersAndSmallLettersReturnFalse()
+        {
+            string jsonString = "\u009c";
+            Assert.False(Program.ValidateJsonString(jsonString));
+        }
     }
 }
