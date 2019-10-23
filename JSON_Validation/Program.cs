@@ -26,27 +26,18 @@ namespace JSON_Validation
             {
                 return true;
             }
-
-            int count = 0;
+            
             string controlChars = "\"/bfnrtu";
-            for (int i = 1; i < jsonString.Length - 1; i++)
+            for (int i = 1; i < jsonString.Length - 2; i++)
             {
-                if (jsonString[i] < 32 || jsonString[i] == '"')
+                if (jsonString[i + 1] < 32 || jsonString[i] == '"')
                 {
                     return false;
                 }
 
                 if (jsonString[i] == '\\')
                 {
-                    for (int j = 1; j < controlChars.Length; j++)
-                    {
-                        if (jsonString[i] == controlChars[j])
-                        {
-                            count++;
-                        }
-                    }
-
-                    if (count == 0)
+                    if (!controlChars.Contains(jsonString[i + 1]))
                     {
                         return false;
                     }

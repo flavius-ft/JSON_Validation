@@ -28,10 +28,10 @@ namespace JSON_Validation.tests
         }
 
         [Fact]
-        public void ValidateJsonStringWithCharsSmallerThan32ReturnFalse()
+        public void ValidateJsonStringWithCharsSmallerThan32ReturnTrue()
         {
             string jsonString = "\"TE\\u0001ST\"";
-            Assert.False(Program.ValidateJsonString(jsonString));
+            Assert.True(Program.ValidateJsonString(jsonString));
         }
 
         [Fact]
@@ -46,6 +46,13 @@ namespace JSON_Validation.tests
         {
             string jsonString = "\"TE\\ST\"";
             Assert.False(Program.ValidateJsonString(jsonString));
+        }
+
+        [Fact]
+        public void ValidateJsonStringWithValidReversSolidusInsideTheStringReturnTrue()
+        {
+            string jsonString = "\"TE\\nST\"";
+            Assert.True(Program.ValidateJsonString(jsonString));
         }
     }
 }
