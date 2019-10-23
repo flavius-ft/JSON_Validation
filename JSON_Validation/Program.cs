@@ -37,6 +37,25 @@ namespace JSON_Validation
 
                 if (jsonString[i] == '\\')
                 {
+                    if (jsonString[i + 1] == 'u')
+                    {
+                        for (int k = i + 2; k <= i + 5; k++)
+                        {
+                            if (jsonString[k] >= '0' && jsonString[k] <= '9')
+                            {
+                                continue;
+                            }
+                            else if (jsonString[k] >= 'A' && jsonString[k] <= 'F')
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+
                     if (!controlChars.Contains(jsonString[i + 1]))
                     {
                         return false;
