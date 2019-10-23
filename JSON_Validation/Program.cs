@@ -44,6 +44,11 @@ namespace JSON_Validation
                 }
             }
             
+            if (jsonString.Length < 2)
+            {
+                return false;
+            }
+
             return jsonString[0] == '\"' && jsonString[jsonString.Length - 1] == '\"';
         }
     }

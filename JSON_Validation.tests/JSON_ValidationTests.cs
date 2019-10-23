@@ -54,5 +54,12 @@ namespace JSON_Validation.tests
             string jsonString = "\"TE\\nST\"";
             Assert.True(Program.ValidateJsonString(jsonString));
         }
+
+        [Fact]
+        public void ValidateJsonStringWithOnliOneQuotationMarckReturnFalse()
+        {
+            string jsonString = "\"";
+            Assert.False(Program.ValidateJsonString(jsonString));
+        }
     }
 }
